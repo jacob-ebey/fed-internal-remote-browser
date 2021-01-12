@@ -1,0 +1,16 @@
+{
+  "name": "fed-internal-remote-browser",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "html-webpack-plugin": "^4.5.1",
+    "serve": "^11.3.2",
+    "webpack": "^5.13.0",
+    "webpack-cli": "^4.3.1"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "serve ./public"
+  }
+}

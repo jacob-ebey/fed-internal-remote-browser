@@ -5,16 +5,6 @@ async function someKindOfDynamicLoading() {
   };
 }
 
-const modProm = someKindOfDynamicLoading();
-let mod;
-
-INTERNAL_LOAD = {
-  init: async (...args) => {
-    mod = await modProm;
-
-    await mod.init(...args);
-  },
-  get: (...args) => {
-    return mod.get(...args);
-  },
-};
+INTERNAL_LOAD = (async () => {
+  return await someKindOfDynamicLoading();
+})();

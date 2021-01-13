@@ -7,18 +7,28 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const config = {
   mode: "development",
   devtool: false,
-  output: {
-    path: path.resolve(__dirname, "public/dist"),
+  entry: {
+    main: "./src/index.js",
+    "internal-load": {
+      import: "./internal-load.js",
+      library: {
+        type: "var",
+        name: "INTERNAL_LOAD",
+      },
+    },
   },
-  externalsType: "script",
   externals: [
     {
-      "internal-load": ["/internal-load.js", "INTERNAL_LOAD"],
+      "internal-load": `promise new Promise((res, rej) => {
+      const mod = INTERNAL_LOAD;
+      mod.default.then(res, rej);
+    })`,
     },
   ],
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "../index.html",
+      chunks: ["internal-load", "main"],
+      chunksSortMode: "manual",
     }),
     new ModuleFederationPlugin({
       remotes: {

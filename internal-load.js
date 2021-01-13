@@ -5,6 +5,6 @@ async function someKindOfDynamicLoading() {
   };
 }
 
-INTERNAL_LOAD = (async () => {
+export default (async () => {
   return await someKindOfDynamicLoading();
 })();

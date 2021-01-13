@@ -11,6 +11,6 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "serve ./public"
+    "start": "serve ./dist"
   }
 }
